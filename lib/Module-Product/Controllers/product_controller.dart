@@ -15,8 +15,8 @@ class ProductController extends GetxController{
   void fetchProducts() async {
     try {
       isLoading(true);
-      var products = await ApiService.fetchProducts();
-        productList.assignAll(products!);
+      List? products = (await ApiService.fetchProducts())?.cast<List>();
+        productList.assignAll(products as Iterable<ProductElement>);
     } finally {
       isLoading(false);
     }

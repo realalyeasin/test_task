@@ -10,32 +10,33 @@ class HomeView extends GetView<HomeController>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: Text("Test Task"),
         centerTitle: true,
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+        child: Icon(Icons.add),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: SizedBox.expand(
         child: PageView(
-          physics: ScrollPhysics(
+          allowImplicitScrolling: true,
+          padEnds: true,
+          physics: const ScrollPhysics(
             parent: NeverScrollableScrollPhysics(),),
           children: [
-            Container(
-              child: Center(
-                child: Text("Home"),
-              ),
+            const Center(
+              child: Text("Home"),
             ),
-            Container(
-              child: ProductListView()
-
+            ProductListView(),
+            const Center(
+              child: Text("Inbox"),
             ),
-            Container(
-              child: Center(
-                child: Text("Inbox"),
-              ),
-            ),
-            Container(
-              child: Center(
-                child: Text("Shop"),
-              ),
+            const Center(
+              child: Text("Shop"),
             ),
           ],
           controller: controller.pageController,
@@ -43,8 +44,12 @@ class HomeView extends GetView<HomeController>{
       ),
       bottomNavigationBar: Obx(
           () => FancyBottomNavigation(
+            barBackgroundColor: Colors.black,
+              activeIconColor: Colors.white,
+              textColor: Colors.white,
+              circleColor: Colors.black,
               tabs: [
-                TabData(iconData: Icons.home_outlined, title: "Home"),
+                TabData(iconData: Icons.home_outlined,  title: "Home",),
                 TabData(iconData: Icons.explore, title: "Explore"),
                 TabData(iconData: Icons.inbox_sharp, title: "Inbox"),
                 TabData(iconData: Icons.shopping_cart, title: "Shop"),
