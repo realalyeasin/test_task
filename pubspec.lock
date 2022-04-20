@@ -159,7 +159,7 @@ packages:
       name: flutter_staggered_grid_view
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.1"
+    version: "0.4.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -389,4 +389,4 @@ packages:
     version: "3.1.0"
 sdks:
   dart: ">=2.16.2 <3.0.0"
-  flutter: ">=2.0.0"
+  flutter: ">=1.24.0-6.0.pre"

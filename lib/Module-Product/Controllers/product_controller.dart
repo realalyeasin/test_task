@@ -4,7 +4,7 @@ import 'package:test_task/Module-Product/Models/product_model.dart';
 
 class ProductController extends GetxController{
   var isLoading = true.obs;
-  var productList = <Product>[].obs;
+  var productList = [].obs;
 
   @override
   void onInit() {
@@ -15,9 +15,10 @@ class ProductController extends GetxController{
   void fetchProducts() async {
     try {
       isLoading(true);
-      var products = await ApiService.fetchProducts();
+      var products = (await ApiService.fetchProducts())?.products;
+      print(products);
       if (products != null) {
-        Rx(productList.value = products as List<Product>);
+        Rx(productList.value = products );
       }
     } finally {
       isLoading(false);
