@@ -1,8 +1,36 @@
 import 'dart:convert';
 
-List<ProductElement>  productFromJson(String str) => List<ProductElement>.from(json.decode(str).map((x) => ProductElement.fromJson(Map<String, dynamic>.from(x))));
+Product productFromJson(String str) => Product.fromJson(json.decode(str));
 
-String productToJson(List<ProductElement> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String productToJson(Product data) => json.encode(data.toJson());
+
+class Product {
+  Product({
+    required this.products,
+    required this.total,
+    required this.skip,
+    required this.limit,
+  });
+
+  List<ProductElement> products;
+  int total;
+  int skip;
+  int limit;
+
+  factory Product.fromJson(Map<String, dynamic> json) => Product(
+    products: List<ProductElement>.from(json["products"].map((x) => ProductElement.fromJson(x))),
+    total: json["total"],
+    skip: json["skip"],
+    limit: json["limit"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "products": List<dynamic>.from(products.map((x) => x.toJson())),
+    "total": total,
+    "skip": skip,
+    "limit": limit,
+  };
+}
 
 class ProductElement {
   ProductElement({
