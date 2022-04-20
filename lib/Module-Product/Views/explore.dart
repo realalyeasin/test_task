@@ -4,11 +4,33 @@ import 'package:get/get.dart';
 import 'package:test_task/Module-Product/Controllers/product_controller.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-class ProductListView extends StatelessWidget {
+class Explore extends StatelessWidget {
   final ProductController productController = Get.put(ProductController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          backgroundColor: Colors.lightGreen,
+          title: Container(
+            width: double.infinity,
+            height: 35,
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(5)),
+            child: Center(
+              child: TextField(
+                decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.search),
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.clear),
+                      onPressed: () {
+                        /* Clear the search field */
+                      },
+                    ),
+                    hintText: 'Search...',
+                    border: InputBorder.none),
+              ),
+            ),
+          )),
       body: Obx(() {
         if (productController.isLoading.value) {
           return const Center(
